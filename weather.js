@@ -1,4 +1,4 @@
-const apiKey = "a12fb02034883e480f0f41431feb3261";
+const apiKey = ;
 
 async function getJSON(url) {
   try {
