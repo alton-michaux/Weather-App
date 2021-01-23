@@ -3,7 +3,6 @@ const apiKey = "a12fb02034883e480f0f41431feb3261";
 async function getJSON(url) {
   try {
     let data = await fetch(url);
-    console.log(data);
     return await data.json();
   } catch (err) {
     throw err;
@@ -22,7 +21,8 @@ const search = document
       getCity(cityURL)
         .then(displayData)
         .catch(err => console.log(err))
-      console.log(newData)
+
+      return newData
     }
   });
 
@@ -35,12 +35,16 @@ async function getCity(url) {
 
 async function displayData (data) {
     const info = document.getElementById('info');
-    const date = new Date(data[0].dt * 1000);
+    const date = await new Date(data[0].dt * 1000);
     const options = { 
         weekday: 'long', 
         year: 'numeric', 
         month: 'long', 
         day: 'numeric' 
     };
-    info.textContent = date.toLocaleDateString("en-US",options);
+    let newHTML = `<div><h3>${date.toLocaleDateString("en-US",options)}</h3>`;
+    newHTML += `<h2>City: <b>${data[0].name}</b> <br> Country: <b>${data[0].sys.country}</b></h2></div>`
+    newHTML += `<div><table>`
+    newHTML += `</table></div>`
+    info.innerHTML = newHTML;
 }
