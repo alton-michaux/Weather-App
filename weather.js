@@ -34,7 +34,13 @@ async function getCity(url) {
 }
 
 async function displayData (data) {
+    const info = document.getElementById('info');
     const date = new Date(data[0].dt * 1000);
-    console.log(date)
-    // const info = document.getElementById('info');
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+    info.textContent = date.toLocaleDateString("en-US",options);
 }
