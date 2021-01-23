@@ -43,8 +43,8 @@ async function displayData (data) {
         day: 'numeric' 
     };
     let newHTML = `<div><h3>${date.toLocaleDateString("en-US",options)}</h3>`;
-    newHTML += `<h2>City: <b>${data[0].name}</b> <br> Country: <b>${data[0].sys.country}</b></h2></div>`
-    newHTML += `<div><table>`
+    newHTML += `<h2>City: <b>${data[0].name}</b> <br> Country: <b>${data[0].sys.country}</b></h2>`
+    newHTML += `<table>`
     newHTML += `</table></div>`
     info.innerHTML = newHTML;
 }
