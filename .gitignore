@@ -1,1 +1,17 @@
 apikey = "a12fb02034883e480f0f41431feb3261"
+
+function tempChangeButton(data) {
+  searchBox = document.getElementsByClassName("bg-dark")[0];
+  tempButton = document.createElement("button");
+  tempButton.innerHTML = "Change to Celsius";
+  tempButton.className = "change-temp";
+  searchBox.appendChild(tempButton);
+  tempButton.addEventListener("click", (e) => {
+    e.target.innerHTML = "Change to Farenheit";
+    const temp = document.querySelectorAll(".temp, .temp-min, .temp-max, .temp-feels-like");
+    if (temp.className === "temp") {
+      console.log(data[0].main.temp)
+      // temp.innerHTML = `<th>${data[0].main.temp}&deg</th>`;
+    }
+  });
+}
