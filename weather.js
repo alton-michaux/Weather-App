@@ -1,5 +1,5 @@
 //declare variable to store api key
-const apiKey =;
+const apiKey = "a12fb02034883e480f0f41431feb3261";
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -25,7 +25,7 @@ const search = document
       const cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityField}&appid=${apiKey}`;
       const newData = getCity(cityURL)
         .then(displayData)
-        // .then(tempChangeButton)
+        .then(tempChangeButton)
         .catch(notFound);
       return newData;
     }
@@ -41,6 +41,7 @@ async function getCity(url) {
 
 //displays data in html format for user to read information
 function displayData(data) {
+  console.log(data);
   const info = document.getElementById("info");
   //create a variable for date and format it to appear on page using options variable
   const date = new Date(data[0].dt * 1000);
@@ -87,6 +88,43 @@ function displayData(data) {
   info.innerHTML = newHTML;
   //return the data for use by tempChangeButton function
   return data;
+}
+
+//button that allows the user to switch between farenheit and celsius temperatures
+function tempChangeButton(data) {
+  searchBox = document.getElementsByClassName("bg-dark")[0];
+  tempButton = document.createElement("button");
+  tempButton.innerHTML = "Change to Celsius";
+  tempButton.className = "change-temp";
+  searchBox.appendChild(tempButton);
+  tempButton.addEventListener("click", (e) => {
+    e.target.innerHTML = "Change to Farenheit";
+    const temp = document.querySelectorAll(
+      ".temp, .temp-min, .temp-max, .temp-feels-like"
+    );
+    console.log(temp.length);
+    for (i = 0; i < temp.length; i++) {
+      if (temp[i].className === "temp") {
+        temp[i].innerHTML = `<p>${data[0].main.temp}&deg</p>`;
+      }
+      if (temp[i].className === "temp-min") {
+        for (j = 0; j < data[1].daily.length; j++) {
+          temp[i].innerHTML = `<th>${data[1].daily[j].temp.min}&deg</th>`;
+        }
+        
+      }
+      if (temp[i].className === "temp-max") {
+        for (j = 0; j < data[1].daily.length; j++) {
+          temp[i].innerHTML = `<th>${data[1].daily[j].temp.max}&deg</th>`;
+        }
+      }
+      if (temp[i].className === "temp-feels-like") {
+        for (j = 0; j < data[1].daily.length; j++) {
+          temp[i].innerHTML = `<th>${data[1].daily[j].feels_like.day}&deg</th>`;
+        }
+      }
+    }
+  });
 }
 
 //error handler
