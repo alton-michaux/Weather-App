@@ -1,5 +1,5 @@
 //declare variable to store api key
-const apiKey = "a12fb02034883e480f0f41431feb3261";
+const apiKey;
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -41,50 +41,6 @@ async function getCity(url) {
   return Promise.all([currentCity, cityInfo]);
 }
 
-//displays data for user to read information (degrees in farenheit)
-function displayDataFarenheit(data) {
-  const info = document.getElementById("info");
-  let newHTML = getDate(data);
-  newHTML += `<p>City/Country: <b>${data[0].name}</b> ,<b>${data[0].sys.country}</b></p>`;
-  newHTML += `<p>Current Weather: <b>${data[0].weather[0].description}</b> </p>`;
-  newHTML += `<p class='temp'>Temp: ${Math.round(
-    ((data[0].main.temp - 273.5) * 9) / 5 + 32
-  )}&deg <br> <img src='http://openweathermap.org/img/wn/${
-    data[0].weather[0].icon
-  }@4x.png'></p></div>`;
-  newHTML += tableMaker(data);
-  info.innerHTML = newHTML;
-  
-  return data;
-}
-
-//function that converts temperatures to celsius
-function displayDataCelsius(data) {
-  const temp = document.querySelectorAll(
-    ".temp, .temp-min, .temp-max, .temp-feels-like"
-  );
-  for (i = 0; i < temp.length; i++) {
-    if (temp[i].className === "temp") {
-      temp[i].innerHTML = `<p>${data[0].main.temp}&deg</p>`;
-    }
-    if (temp[i].className === "temp-min") {
-      for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${data[1].daily[j].temp.min}&deg</th>`;
-      }
-    }
-    if (temp[i].className === "temp-max") {
-      for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${data[1].daily[j].temp.max}&deg</th>`;
-      }
-    }
-    if (temp[i].className === "temp-feels-like") {
-      for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${data[1].daily[j].feels_like.day}&deg</th>`;
-      }
-    }
-  }
-}
-
 //generate current date
 function getDate(data) {
   const date = new Date(data[0].dt * 1000);
@@ -100,6 +56,23 @@ function getDate(data) {
   )}</h4>`;
 
   return newHTML;
+}
+
+//displays data for user to read information (degrees in farenheit)
+function displayDataFarenheit(data) {
+  const info = document.getElementById("info");
+  let newHTML = getDate(data);
+  newHTML += `<p>City/Country: <b>${data[0].name}</b> ,<b>${data[0].sys.country}</b></p>`;
+  newHTML += `<p>Current Weather: <b>${data[0].weather[0].description}</b> </p>`;
+  newHTML += `<p class='temp'>Temp: ${Math.round(
+    ((data[0].main.temp - 273.5) * 9) / 5 + 32
+  )}&deg <br> <img src='http://openweathermap.org/img/wn/${
+    data[0].weather[0].icon
+  }@4x.png'></p></div>`;
+  newHTML += tableMaker(data);
+  info.innerHTML = newHTML;
+
+  return data;
 }
 
 //function to construct table using html elements
@@ -145,6 +118,33 @@ function tempChangeButton(data) {
       e.target.innerHTML = "Change to Celsius";
     }
   });
+}
+
+//function that converts temperatures to celsius
+function displayDataCelsius(data) {
+  const temp = document.querySelectorAll(
+    ".temp, .temp-min, .temp-max, .temp-feels-like"
+  );
+  for (i = 0; i < temp.length; i++) {
+    if (temp[i].className === "temp") {
+      temp[i].innerHTML = `<p>Temp: ${data[0].main.temp}&deg <br> <img src='http://openweathermap.org/img/wn/${data[0].weather[0].icon}@4x.png'></p>`;
+    }
+    if (temp[i].className === "temp-min") {
+      for (j = 0; j < data[1].daily.length; j++) {
+        temp[i].innerHTML = `<th>${data[1].daily[j].temp.min}&deg</th>`;
+      }
+    }
+    if (temp[i].className === "temp-max") {
+      for (j = 0; j < data[1].daily.length; j++) {
+        temp[i].innerHTML = `<th>${data[1].daily[j].temp.max}&deg</th>`;
+      }
+    }
+    if (temp[i].className === "temp-feels-like") {
+      for (j = 0; j < data[1].daily.length; j++) {
+        temp[i].innerHTML = `<th>${data[1].daily[j].feels_like.day}&deg</th>`;
+      }
+    }
+  }
 }
 
 //error handler
