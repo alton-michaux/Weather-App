@@ -1,5 +1,5 @@
 //declare variable to store api key
-const apiKey;
+const apiKey =;
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -88,8 +88,6 @@ function displayData(data) {
   //return the data for use by tempChangeButton function
   return data;
 }
-
-//button that allows the user to switch between farenheit and celsius temperatures
 
 //error handler
 function notFound(err) {
