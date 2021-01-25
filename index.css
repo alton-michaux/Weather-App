@@ -49,3 +49,27 @@ img{
 .outside-blocks {
   background-color: rgb(62, 68, 90);
 }
+
+@media screen and (max-width: 500px) {
+.bg-dark,
+.jumbotron,
+.text-white {
+  position: relative;
+  margin-bottom: 30px;
+  height: 350px;
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+}
+
+.weather-table {
+  width: inherit;
+}
+
+}
+
+@media screen and (min-width: 800px) {
+  
+}

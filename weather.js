@@ -1,5 +1,5 @@
 //declare variable to store api key
-const apiKey;
+const apiKey = "a12fb02034883e480f0f41431feb3261";
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -77,7 +77,7 @@ function displayDataFarenheit(data) {
 
 //function to construct table using html elements
 function tableMaker(data) {
-  let newHTML = `<div><table class="weather-table">`;
+  let newHTML = `<div class="table"><table class="weather-table">`;
   //headers
   newHTML += `<thead>
         <tr>
