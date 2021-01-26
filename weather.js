@@ -1,5 +1,5 @@
 //declare variable to store api key
-const apiKey = "a12fb02034883e480f0f41431feb3261";
+const apiKey ;
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -16,6 +16,7 @@ const search = document
   .getElementById("search")
   //makes search button functional with 'click'
   .addEventListener("click", () => {
+    //need to check for and clear previous data
     //process user input from 'cityField'
     const cityField = document.getElementById("city").value.toLowerCase();
     if (cityField.length == "0") {
@@ -104,18 +105,19 @@ function tableMaker(data) {
 
 //button that allows the user to switch between farenheit and celsius temperatures
 function tempChangeButton(data) {
+  console.log(data)
   searchBox = document.getElementsByClassName("bg-dark")[0];
   tempButton = document.createElement("button");
-  tempButton.innerHTML = "Change to Celsius";
+  tempButton.innerHTML = `${data[0].name} to Celsius`;
   tempButton.className = "change-temp";
   searchBox.appendChild(tempButton);
   tempButton.addEventListener("click", (e) => {
-    if (e.target.innerHTML === "Change to Celsius") {
+    if (e.target.innerHTML === `${data[0].name} to Celsius`) {
       displayDataCelsius(data);
-      e.target.innerHTML = "Change to Farenheit";
+      e.target.innerHTML = `${data[0].name} to Farenheit`;
     } else {
       displayDataFarenheit(data);
-      e.target.innerHTML = "Change to Celsius";
+      e.target.innerHTML = `${data[0].name} to Celsius`;
     }
   });
 }
