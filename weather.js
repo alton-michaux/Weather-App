@@ -11,15 +11,15 @@ async function getJSON(url) {
   }
 }
 
-//function that selects the search button.
+//select the search button.
 const search = document
   .getElementById("search")
   //makes search button functional with 'click'
   .addEventListener("click", () => {
-    //need to check for and clear previous data
-    //process user input from 'cityField'
+    //grab user input from 'cityField'
     const cityField = document.getElementById("city").value.toLowerCase();
-    if (cityField.length == "0") {
+    //check for user input
+    if (cityField.length === 0) {
       alert("Please enter a city");
     } else {
       //generates input-specific url
@@ -129,21 +129,21 @@ function displayDataCelsius(data) {
   );
   for (i = 0; i < temp.length; i++) {
     if (temp[i].className === "temp") {
-      temp[i].innerHTML = `<p>Temp: ${data[0].main.temp}&deg <br> <img src='http://openweathermap.org/img/wn/${data[0].weather[0].icon}@4x.png'></p>`;
+      temp[i].innerHTML = `<p>Temp: ${Math.round((data[0].main.temp) - 273.15)}&deg <br> <img src='http://openweathermap.org/img/wn/${data[0].weather[0].icon}@4x.png'></p>`;
     }
     if (temp[i].className === "temp-min") {
       for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${data[1].daily[j].temp.min}&deg</th>`;
+        temp[i].innerHTML = `<th>${Math.round((data[1].daily[j].temp.min) - 273.15)}&deg</th>`;
       }
     }
     if (temp[i].className === "temp-max") {
       for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${data[1].daily[j].temp.max}&deg</th>`;
+        temp[i].innerHTML = `<th>${Math.round((data[1].daily[j].temp.max) - 273.15)}&deg</th>`;
       }
     }
     if (temp[i].className === "temp-feels-like") {
       for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${data[1].daily[j].feels_like.day}&deg</th>`;
+        temp[i].innerHTML = `<th>${Math.round((data[1].daily[j].feels_like.day) - 273.15)}&deg</th>`;
       }
     }
   }
