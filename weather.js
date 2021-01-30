@@ -1,5 +1,5 @@
 //declare variable to store api key
-const apiKey;
+const apiKey = "a12fb02034883e480f0f41431feb3261";
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -51,7 +51,7 @@ function getDate(data) {
     month: "long",
     day: "numeric",
   };
-  newHTML = `<div><h4 class="date">${date.toLocaleDateString(
+  newHTML = `<div class="date"><h4 class="date">${date.toLocaleDateString(
     "en-US",
     options
   )}</h4>`;
@@ -106,7 +106,7 @@ function tableMaker(data) {
 //button that allows the user to switch between farenheit and celsius temperatures
 function tempChangeButton(data) {
   console.log(data)
-  searchBox = document.getElementsByClassName("bg-dark")[0];
+  searchBox = document.getElementsByClassName("filler")[0];
   tempButton = document.createElement("button");
   tempButton.innerHTML = `${data[0].name} to Celsius`;
   tempButton.className = "change-temp";
