@@ -1,5 +1,5 @@
 //declare variable to store api key
-const apiKey;
+const apiKey = "a12fb02034883e480f0f41431feb3261";
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -106,24 +106,37 @@ function displayDataFarenheit(data) {
           "url('https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')";
         container.style.backgroundSize = "cover";
         break;
-      case "few clouds", "scattered clouds":
+      case "few clouds":
+      case "scattered clouds":
         container.style.backgroundImage =
           "url('https://www.haidagwaiiobserver.com/wp-content/uploads/2020/03/21121137_web1_200403-HGO-week-of-sun-blueskies_1.jpg')";
         container.style.backgroundSize = "cover";
         break;
       case "overcast clouds":
+      case "broken clouds":
         container.style.backgroundImage =
           "url('https://c1.wallpaperflare.com/preview/735/805/144/overcast-cloudy-dramatic-sky-storm.jpg')";
         container.style.backgroundSize = "cover";
         break;
-      case "moderate rain", "light rain", "intense rain", "rain":
+      case "moderate rain":
+      case "light rain":
+      case "intense rain":
+      case "rain":
         container.style.backgroundImage =
           "url('https://cdn.abcotvs.com/dip/images/5184599_031119-kgo-shutterstock-rain-img.jpg?w=800&r=16%3A9')";
         container.style.backgroundSize = "cover";
         break;
-      case "mist", "fog":
+      case "mist":
+      case "fog":
         container.style.backgroundImage =
           "url('https://www.advancednanotechnologies.com/wp-content/uploads/2019/05/iStock-1055906130-1080x675.jpg')";
+        container.style.backgroundSize = "cover";
+        break;
+      case "snow":
+      case "light snow":
+      case "heavy snow":
+        container.style.backgroundImage =
+          "url('https://www.nwahomepage.com/wp-content/uploads/sites/90/2021/01/Charles-Peek_Hwy-7-Snow-Covered_1-7-2021.jpg?w=2048')";
         container.style.backgroundSize = "cover";
         break;
       default:
