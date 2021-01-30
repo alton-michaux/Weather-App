@@ -62,6 +62,7 @@ function getDate(data) {
 //displays data for user to read information (degrees in farenheit)
 function displayDataFarenheit(data) {
   const info = document.getElementById("info");
+  const dateBox = document.getElementById("filler2");
   let newHTML = getDate(data);
   newHTML += `<p>City/Country: <b>${data[0].name}</b> ,<b>${data[0].sys.country}</b></p>`;
   newHTML += `<p>Current Weather: <b>${data[0].weather[0].description}</b> </p>`;
@@ -70,23 +71,26 @@ function displayDataFarenheit(data) {
   )}&deg <br> <img src='http://openweathermap.org/img/wn/${
     data[0].weather[0].icon
   }@4x.png'></p></div>`;
-  newHTML += tableMaker(data);
-  info.innerHTML = newHTML;
+  
+  newHTMLData = tableMaker(data);
+
+  info.innerHTML = newHTMLData;
+  dateBox.innerHTML = newHTML;
 
   return data;
 }
 
 //function to construct table using html elements
 function tableMaker(data) {
-  let newHTML = `<div class="table"><table class="weather-table">`;
+  let newHTMLData = `<div class="table"><table class="weather-table">`;
   //headers
-  newHTML += `<thead>
+  newHTMLData += `<thead>
         <tr>
           <th class='outside-blocks'><b>Day</b></th><th class='outside-blocks'><b>Min</b></th><th class='outside-blocks'><b>Max</b></th><th class='outside-blocks'><b>Will Feel Like</b></th><th class='outside-blocks'><b>Weather</b></th>
         </tr>`;
   //write a loop to write information for all 7 days of weather in table (degrees in farenheit)
   for (i = 1; i < data[1].daily.length; i++) {
-    newHTML += `<tr>
+    newHTMLData += `<tr>
           <th class='outside-blocks'>${i}</th><th class='temp-min'>${Math.round(
       ((data[1].daily[i].temp.min - 273.5) * 9) / 5 + 32
     )}&deg</th><th class='temp-max'>${Math.round(
@@ -98,9 +102,9 @@ function tableMaker(data) {
     }.png'></th>
        </tr>`;
   }
-  newHTML += `</table></div>`;
+  newHTMLData += `</table></div>`;
 
-  return newHTML;
+  return newHTMLData;
 }
 
 //button that allows the user to switch between farenheit and celsius temperatures
@@ -108,16 +112,17 @@ function tempChangeButton(data) {
   console.log(data)
   searchBox = document.getElementsByClassName("filler")[0];
   tempButton = document.createElement("button");
-  tempButton.innerHTML = `${data[0].name} to Celsius`;
+  tempButton.innerHTML = `Celsius`;
   tempButton.className = "change-temp";
+  tempButton.classList.add('btn-outline-info', 'btn')
   searchBox.appendChild(tempButton);
   tempButton.addEventListener("click", (e) => {
-    if (e.target.innerHTML === `${data[0].name} to Celsius`) {
+    if (e.target.innerHTML === `Celsius`) {
       displayDataCelsius(data);
-      e.target.innerHTML = `${data[0].name} to Farenheit`;
+      e.target.innerHTML = `Farenheit`;
     } else {
       displayDataFarenheit(data);
-      e.target.innerHTML = `${data[0].name} to Celsius`;
+      e.target.innerHTML = `Celsius`;
     }
   });
 }
