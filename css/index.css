@@ -20,6 +20,7 @@ img{
   margin: auto;
   margin-top: 10%;
   text-align: center;
+  overflow: none;
 }
 
 /* .filler {
@@ -51,11 +52,11 @@ img{
 .weather-table {
   width: inherit;
   height: auto;
-  border: 2px solid rgb(5, 4, 90);
+  border: 2px solid rgb(21, 21, 39);
   margin-bottom: 30px;
   background-color: rgb(71, 76, 92);
   color: white;
-  opacity: 90%;
+  opacity: 70%;
 }
 
 .outside-blocks {

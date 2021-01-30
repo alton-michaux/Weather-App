@@ -61,38 +61,48 @@ function getDate(data) {
 
 //displays data for user to read information (degrees in farenheit)
 function displayDataFarenheit(data) {
-  const body = document.getElementsByTagName("body");
+  const container = document.querySelector("body");
   const info = document.getElementById("info");
   const dateBox = document.getElementById("filler2");
+  const weather = data[0].weather[0].description;
   let newHTML = getDate(data);
   newHTML += `<p>City/Country: <b>${data[0].name}</b> ,<b>${data[0].sys.country}</b></p>`;
-  newHTML += `<p>Current Weather: <b>${data[0].weather[0].description}</b></p>`;
-  const weather = data[0].weather[0].description;
-  console.log(weather);
-  switch (weather) {
-    case "clear sky" || "few clouds":
-      console.log("nice out");
-      break;
-    case "overcast clouds":
-      console.log("little cloudy");
-      break;
-    case "moderate rain" || "light rain" || "intense rain" || "rain":
-      console.log("got rain");
-      break;
-    default:
-      console.log("weather exists");
-      break;
-  }
+  newHTML += `<p>Current Weather: <b>${weather}</b></p>`;
   newHTML += `<p class='temp'>Temp: ${Math.round(
     ((data[0].main.temp - 273.5) * 9) / 5 + 32
   )}&deg <br> <img src='http://openweathermap.org/img/wn/${
     data[0].weather[0].icon
   }@4x.png'></p></div>`;
 
+  const backgroundChange = () => {
+    switch (weather) {
+    case "clear sky" || "few clouds":
+      container.style.backgroundImage = "url('https://www.haidagwaiiobserver.com/wp-content/uploads/2020/03/21121137_web1_200403-HGO-week-of-sun-blueskies_1.jpg')";
+      container.style.backgroundSize = "cover";
+      break;
+    case "overcast clouds":
+      container.style.backgroundImage = "url('https://c1.wallpaperflare.com/preview/735/805/144/overcast-cloudy-dramatic-sky-storm.jpg')";
+      container.style.backgroundSize = "cover";
+      break;
+    case "moderate rain" || "light rain" || "intense rain" || "rain":
+      container.style.backgroundImage = "url('https://cdn.abcotvs.com/dip/images/5184599_031119-kgo-shutterstock-rain-img.jpg?w=800&r=16%3A9')";
+      container.style.backgroundSize = "cover";
+      break;
+    case "mist" || "fog":
+      container.style.backgroundImage = "url('https://www.advancednanotechnologies.com/wp-content/uploads/2019/05/iStock-1055906130-1080x675.jpg')";
+      container.style.backgroundSize = "cover";
+      break
+    default:
+      console.log('weather exists');
+  }
+}
+
   newHTMLData = tableMaker(data);
 
   info.innerHTML = newHTMLData;
   dateBox.innerHTML = newHTML;
+
+  backgroundChange();
 
   return data;
 }
@@ -126,7 +136,6 @@ function tableMaker(data) {
 
 //button that allows the user to switch between farenheit and celsius temperatures
 function tempChangeButton(data) {
-  // console.log(data);
   searchBox = document.getElementsByClassName("filler")[0];
   tempButton = document.createElement("button");
   tempButton.innerHTML = `Celsius`;
