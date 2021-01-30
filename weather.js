@@ -61,17 +61,34 @@ function getDate(data) {
 
 //displays data for user to read information (degrees in farenheit)
 function displayDataFarenheit(data) {
+  const body = document.getElementsByTagName("body");
   const info = document.getElementById("info");
   const dateBox = document.getElementById("filler2");
   let newHTML = getDate(data);
   newHTML += `<p>City/Country: <b>${data[0].name}</b> ,<b>${data[0].sys.country}</b></p>`;
-  newHTML += `<p>Current Weather: <b>${data[0].weather[0].description}</b> </p>`;
+  newHTML += `<p>Current Weather: <b>${data[0].weather[0].description}</b></p>`;
+  const weather = data[0].weather[0].description;
+  console.log(weather);
+  switch (weather) {
+    case "clear sky" || "few clouds":
+      console.log("nice out");
+      break;
+    case "overcast clouds":
+      console.log("little cloudy");
+      break;
+    case "moderate rain" || "light rain" || "intense rain" || "rain":
+      console.log("got rain");
+      break;
+    default:
+      console.log("weather exists");
+      break;
+  }
   newHTML += `<p class='temp'>Temp: ${Math.round(
     ((data[0].main.temp - 273.5) * 9) / 5 + 32
   )}&deg <br> <img src='http://openweathermap.org/img/wn/${
     data[0].weather[0].icon
   }@4x.png'></p></div>`;
-  
+
   newHTMLData = tableMaker(data);
 
   info.innerHTML = newHTMLData;
@@ -109,12 +126,11 @@ function tableMaker(data) {
 
 //button that allows the user to switch between farenheit and celsius temperatures
 function tempChangeButton(data) {
-  console.log(data)
+  // console.log(data);
   searchBox = document.getElementsByClassName("filler")[0];
   tempButton = document.createElement("button");
   tempButton.innerHTML = `Celsius`;
-  tempButton.className = "change-temp";
-  tempButton.classList.add('btn-outline-info', 'btn')
+  tempButton.classList.add("btn-outline-info", "btn");
   searchBox.appendChild(tempButton);
   tempButton.addEventListener("click", (e) => {
     if (e.target.innerHTML === `Celsius`) {
@@ -134,21 +150,31 @@ function displayDataCelsius(data) {
   );
   for (i = 0; i < temp.length; i++) {
     if (temp[i].className === "temp") {
-      temp[i].innerHTML = `<p>Temp: ${Math.round((data[0].main.temp) - 273.15)}&deg <br> <img src='http://openweathermap.org/img/wn/${data[0].weather[0].icon}@4x.png'></p>`;
+      temp[i].innerHTML = `<p>Temp: ${Math.round(
+        data[0].main.temp - 273.15
+      )}&deg <br> <img src='http://openweathermap.org/img/wn/${
+        data[0].weather[0].icon
+      }@4x.png'></p>`;
     }
     if (temp[i].className === "temp-min") {
       for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${Math.round((data[1].daily[j].temp.min) - 273.15)}&deg</th>`;
+        temp[i].innerHTML = `<th>${Math.round(
+          data[1].daily[j].temp.min - 273.15
+        )}&deg</th>`;
       }
     }
     if (temp[i].className === "temp-max") {
       for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${Math.round((data[1].daily[j].temp.max) - 273.15)}&deg</th>`;
+        temp[i].innerHTML = `<th>${Math.round(
+          data[1].daily[j].temp.max - 273.15
+        )}&deg</th>`;
       }
     }
     if (temp[i].className === "temp-feels-like") {
       for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${Math.round((data[1].daily[j].feels_like.day) - 273.15)}&deg</th>`;
+        temp[i].innerHTML = `<th>${Math.round(
+          data[1].daily[j].feels_like.day - 273.15
+        )}&deg</th>`;
       }
     }
   }
