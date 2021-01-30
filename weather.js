@@ -15,23 +15,45 @@ async function getJSON(url) {
 const search = document
   .getElementById("search")
   //makes search button functional with 'click'
-  .addEventListener("click", () => {
-    //grab user input from 'cityField'
-    const cityField = document.getElementById("city").value.toLowerCase();
-    //check for user input
-    if (cityField.length === 0) {
-      alert("Please enter a city");
+  .addEventListener("click", (e) => {
+    if (e.className == "clicked") {
+      location.reload();
     } else {
-      //generates input-specific url
-      const cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityField}&appid=${apiKey}`;
-      //refer to functions for relevant comments
-      const newData = getCity(cityURL)
-        .then(displayDataFarenheit)
-        .then(tempChangeButton)
-        .catch(notFound);
-      return newData;
+      //grab user input from 'cityField'
+      const cityField = document.getElementById("city").value.toLowerCase();
+      //check for user input
+      if (cityField.length === 0) {
+        alert("Please enter a city");
+      } else {
+        //generates input-specific url
+        const cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityField}&appid=${apiKey}`;
+        //refer to functions for relevant comments
+        const newData = getCity(cityURL)
+          .then(displayDataFarenheit)
+          .then(tempChangeButton)
+          .then(resetButton)
+          .catch(notFound);
+        return newData;
+      }
+      e.classList.add = "clicked";
     }
   });
+
+const resetButton = (data) => {
+  const reset = document.createElement("button");
+  const jumbo = document.querySelector(".jumbotron");
+
+  reset.innerHTML = "RESET";
+  reset.classList.add("btn-outline-info", "btn");
+
+  jumbo.appendChild(reset);
+
+  reset.addEventListener("click", () => {
+    location.reload();
+  });
+
+  return data;
+};
 
 //function that runs previously generated url through the getJSON function for retrieval and parsing as well as generating a second api call for future weather forecasts
 async function getCity(url) {
@@ -44,6 +66,7 @@ async function getCity(url) {
 
 //generate current date
 function getDate(data) {
+  const welcome = document.getElementById("welcome-message");
   const date = new Date(data[0].dt * 1000);
   const options = {
     weekday: "long",
@@ -51,12 +74,12 @@ function getDate(data) {
     month: "long",
     day: "numeric",
   };
-  newHTML = `<div class="date"><h4 class="date">${date.toLocaleDateString(
+  newHTML = `<div class="date"><h3 class="date">${date.toLocaleDateString(
     "en-US",
     options
-  )}</h4>`;
+  )}</h3></div`;
 
-  return newHTML;
+  welcome.innerHTML = newHTML;
 }
 
 //displays data for user to read information (degrees in farenheit)
@@ -65,8 +88,10 @@ function displayDataFarenheit(data) {
   const info = document.getElementById("info");
   const dateBox = document.getElementById("filler2");
   const weather = data[0].weather[0].description;
-  let newHTML = getDate(data);
-  newHTML += `<p>City/Country: <b>${data[0].name}</b> ,<b>${data[0].sys.country}</b></p>`;
+
+  getDate(data);
+
+  newHTML = `<div class="cityInfo"<p>City/Country: <b>${data[0].name}</b> ,<b>${data[0].sys.country}</b></p>`;
   newHTML += `<p>Current Weather: <b>${weather}</b></p>`;
   newHTML += `<p class='temp'>Temp: ${Math.round(
     ((data[0].main.temp - 273.5) * 9) / 5 + 32
@@ -76,26 +101,35 @@ function displayDataFarenheit(data) {
 
   const backgroundChange = () => {
     switch (weather) {
-    case "clear sky" || "few clouds":
-      container.style.backgroundImage = "url('https://www.haidagwaiiobserver.com/wp-content/uploads/2020/03/21121137_web1_200403-HGO-week-of-sun-blueskies_1.jpg')";
-      container.style.backgroundSize = "cover";
-      break;
-    case "overcast clouds":
-      container.style.backgroundImage = "url('https://c1.wallpaperflare.com/preview/735/805/144/overcast-cloudy-dramatic-sky-storm.jpg')";
-      container.style.backgroundSize = "cover";
-      break;
-    case "moderate rain" || "light rain" || "intense rain" || "rain":
-      container.style.backgroundImage = "url('https://cdn.abcotvs.com/dip/images/5184599_031119-kgo-shutterstock-rain-img.jpg?w=800&r=16%3A9')";
-      container.style.backgroundSize = "cover";
-      break;
-    case "mist" || "fog":
-      container.style.backgroundImage = "url('https://www.advancednanotechnologies.com/wp-content/uploads/2019/05/iStock-1055906130-1080x675.jpg')";
-      container.style.backgroundSize = "cover";
-      break
-    default:
-      console.log('weather exists');
-  }
-}
+      case "clear sky":
+        container.style.backgroundImage =
+          "url('https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')";
+        container.style.backgroundSize = "cover";
+        break;
+      case "few clouds" || "scattered clouds":
+        container.style.backgroundImage =
+          "url('https://www.haidagwaiiobserver.com/wp-content/uploads/2020/03/21121137_web1_200403-HGO-week-of-sun-blueskies_1.jpg')";
+        container.style.backgroundSize = "cover";
+        break;
+      case "overcast clouds":
+        container.style.backgroundImage =
+          "url('https://c1.wallpaperflare.com/preview/735/805/144/overcast-cloudy-dramatic-sky-storm.jpg')";
+        container.style.backgroundSize = "cover";
+        break;
+      case "moderate rain" || "light rain" || "intense rain" || "rain":
+        container.style.backgroundImage =
+          "url('https://cdn.abcotvs.com/dip/images/5184599_031119-kgo-shutterstock-rain-img.jpg?w=800&r=16%3A9')";
+        container.style.backgroundSize = "cover";
+        break;
+      case "mist" || "fog":
+        container.style.backgroundImage =
+          "url('https://www.advancednanotechnologies.com/wp-content/uploads/2019/05/iStock-1055906130-1080x675.jpg')";
+        container.style.backgroundSize = "cover";
+        break;
+      default:
+        console.log("weather exists");
+    }
+  };
 
   newHTMLData = tableMaker(data);
 
