@@ -1,3 +1,7 @@
+p {
+  align-self: center;
+}
+
 tr {
   border-top: 1px solid white;
 }
@@ -13,25 +17,27 @@ img{
 }
 
 .container{
-  width: 70%;
   margin: auto;
-  margin-top: 2%;
+  margin-top: 10%;
   text-align: center;
+  overflow: none;
 }
 
-.date {
-  text-decoration: underline;
+/* .filler {
+  border: 1px solid black;
+} */
+
+.btn {
+  height: 40px;
 }
 
-.change-temp {
-  margin-top: 25px;
-  margin-bottom: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 5px;
-  background-color: rgb(50, 52, 58);
-  color: rgb(4, 158, 158);
-  border: 1px solid rgb(4, 127, 158);
+.input-group-append {
+  justify-content: center;
+}
+
+.date,
+.city-data {
+  text-decoration: none;
 }
 
 .change-temp:hover {
@@ -39,13 +45,18 @@ img{
   color: white;
 }
 
+.table {
+  width: inherit;
+}
+
 .weather-table {
-  width: 100%;
+  width: inherit;
   height: auto;
-  border: 1px solid rgb(5, 4, 90);
+  border: 2px solid rgb(21, 21, 39);
   margin-bottom: 30px;
   background-color: rgb(71, 76, 92);
   color: white;
+  opacity: 70%;
 }
 
 .outside-blocks {
