@@ -30,6 +30,7 @@ html {
     overflow-y: auto;
     border: 2px solid black;
     opacity: 70%;
+    box-shadow: black 10px 10px 11px;
   }
 
   .info {
@@ -42,3 +43,6 @@ html {
       grid-row-end: 2;
   }
   
+  @media screen and (max-width: 500px) {
+    
+    }

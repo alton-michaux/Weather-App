@@ -2,13 +2,8 @@ p {
   align-self: center;
 }
 
-tr {
-  border-top: 1px solid white;
-}
-
 th{
   padding: 10px;
-  border-right: .5px solid white;
 }
 
 img{
@@ -22,10 +17,6 @@ img{
   text-align: center;
   overflow: none;
 }
-
-/* .filler {
-  border: 1px solid black;
-} */
 
 .btn {
   height: 40px;
@@ -52,11 +43,12 @@ img{
 .weather-table {
   width: inherit;
   height: auto;
-  border: 2px solid rgb(21, 21, 39);
+  border: 2px solid rgb(71, 76, 92);
   margin-bottom: 30px;
   background-color: rgb(71, 76, 92);
   color: white;
   opacity: 70%;
+  box-shadow: black 10px 10px 11px;
 }
 
 .outside-blocks {
@@ -82,8 +74,4 @@ img{
   width: inherit;
 }
 
-}
-
-@media screen and (min-width: 800px) {
-  
 }

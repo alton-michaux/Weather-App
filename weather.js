@@ -1,5 +1,5 @@
 //declare variable to store api key
-const apiKey = "a12fb02034883e480f0f41431feb3261";
+const apiKey ;
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -15,27 +15,22 @@ async function getJSON(url) {
 const search = document
   .getElementById("search")
   //makes search button functional with 'click'
-  .addEventListener("click", (e) => {
-    if (e.className == "clicked") {
-      location.reload();
+  .addEventListener("click", () => {
+    //grab user input from 'cityField'
+    const cityField = document.getElementById("city").value.toLowerCase();
+    //check for user input
+    if (cityField.length === 0) {
+      alert("Please enter a city");
     } else {
-      //grab user input from 'cityField'
-      const cityField = document.getElementById("city").value.toLowerCase();
-      //check for user input
-      if (cityField.length === 0) {
-        alert("Please enter a city");
-      } else {
-        //generates input-specific url
-        const cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityField}&appid=${apiKey}`;
-        //refer to functions for relevant comments
-        const newData = getCity(cityURL)
-          .then(displayDataFarenheit)
-          .then(tempChangeButton)
-          .then(resetButton)
-          .catch(notFound);
-        return newData;
-      }
-      e.classList.add = "clicked";
+      //generates input-specific url
+      const cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityField}&appid=${apiKey}`;
+      //refer to functions for relevant comments
+      const newData = getCity(cityURL)
+        .then(displayDataFarenheit)
+        .then(tempChangeButton)
+        .then(resetButton)
+        .catch(notFound);
+      return newData;
     }
   });
 
