@@ -113,8 +113,8 @@ function displayDataFarenheit(data) {
           "url('https://c1.wallpaperflare.com/preview/735/805/144/overcast-cloudy-dramatic-sky-storm.jpg')";
         container.style.backgroundSize = "cover";
         break;
-      case "moderate intensity rain":
-      case "light intensity rain":
+      case "moderate rain":
+      case "light rain":
       case "rain":
         container.style.backgroundImage =
           "url('https://cdn.abcotvs.com/dip/images/5184599_031119-kgo-shutterstock-rain-img.jpg?w=800&r=16%3A9')";
