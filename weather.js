@@ -15,27 +15,22 @@ async function getJSON(url) {
 const search = document
   .getElementById("search")
   //makes search button functional with 'click'
-  .addEventListener("click", (e) => {
-    if (e.className == "clicked") {
-      location.reload();
+  .addEventListener("click", () => {
+    //grab user input from 'cityField'
+    const cityField = document.getElementById("city").value.toLowerCase();
+    //check for user input
+    if (cityField.length === 0) {
+      alert("Please enter a city");
     } else {
-      //grab user input from 'cityField'
-      const cityField = document.getElementById("city").value.toLowerCase();
-      //check for user input
-      if (cityField.length === 0) {
-        alert("Please enter a city");
-      } else {
-        //generates input-specific url
-        const cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityField}&appid=${apiKey}`;
-        //refer to functions for relevant comments
-        const newData = getCity(cityURL)
-          .then(displayDataFarenheit)
-          .then(tempChangeButton)
-          .then(resetButton)
-          .catch(notFound);
-        return newData;
-      }
-      e.classList.add = "clicked";
+      //generates input-specific url
+      const cityURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityField}&appid=${apiKey}`;
+      //refer to functions for relevant comments
+      const newData = getCity(cityURL)
+        .then(displayDataFarenheit)
+        .then(tempChangeButton)
+        .then(resetButton)
+        .catch(notFound);
+      return newData;
     }
   });
 
@@ -120,10 +115,13 @@ function displayDataFarenheit(data) {
         break;
       case "moderate rain":
       case "light rain":
-      case "intense rain":
       case "rain":
         container.style.backgroundImage =
           "url('https://cdn.abcotvs.com/dip/images/5184599_031119-kgo-shutterstock-rain-img.jpg?w=800&r=16%3A9')";
+        container.style.backgroundSize = "cover";
+        break;
+      case "heavy intensity rain":
+        container.style.backgroundImage = "url('https://i.ytimg.com/vi/jB-7Y5eDfXk/maxresdefault.jpg')";
         container.style.backgroundSize = "cover";
         break;
       case "mist":
