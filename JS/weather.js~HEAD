@@ -1,5 +1,9 @@
 //declare variable to store api key
-const apiKey = "a12fb02034883e480f0f41431feb3261";
+<<<<<<< HEAD:JS/weather.js
+const apiKey = "";
+=======
+const apiKey ;
+>>>>>>> 4788cc1336ac9cc9886777761c9f23940f76d7e9:weather.js
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -18,7 +22,7 @@ const search = document
   .addEventListener("click", () => {
     //grab user input from 'cityField'
     const cityField = document.getElementById("city").value.toLowerCase();
-    console.log("check for user input");
+    //check for user input
     if (cityField.length === 0) {
       alert("Please enter a city");
     } else {
@@ -115,10 +119,13 @@ function displayDataFarenheit(data) {
         break;
       case "moderate rain":
       case "light rain":
-      case "intense rain":
       case "rain":
         container.style.backgroundImage =
           "url('https://cdn.abcotvs.com/dip/images/5184599_031119-kgo-shutterstock-rain-img.jpg?w=800&r=16%3A9')";
+        container.style.backgroundSize = "cover";
+        break;
+      case "heavy intensity rain":
+        container.style.backgroundImage = "url('https://i.ytimg.com/vi/jB-7Y5eDfXk/maxresdefault.jpg')";
         container.style.backgroundSize = "cover";
         break;
       case "mist":

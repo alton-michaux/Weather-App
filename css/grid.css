@@ -43,6 +43,59 @@ html {
       grid-row-end: 2;
   }
   
-  @media screen and (max-width: 500px) {
-    
+  @media screen and (max-width: 1100px) {
+
+  body {
+    margin:0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .jumbotron {
+    display: flex;
+    flex-direction: column;
+    flex: 1 2 500px;
+    margin: auto;
+    margin-bottom: 30px;
+    height: 50%;
+    line-height: 2em;
+  }
+
+  .jumbotron p {
+    margin-bottom: 50px;
+  }
+
+  .info {
+    width: inherit;
+    flex: 2 1 560px;
+    margin: auto;
+  }
     }
+
+@media screen and (max-width: 500px) {
+
+  body {
+    margin: 0;
+  }
+
+  .jumbotron {
+    width: 100%;
+  }
+
+  .input-group-append {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .info {
+    width: inherit;
+    flex: 2 1 560px;
+    margin: auto;
+  }
+}
