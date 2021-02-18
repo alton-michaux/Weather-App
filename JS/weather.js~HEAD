@@ -1,5 +1,9 @@
 //declare variable to store api key
+<<<<<<< HEAD:JS/weather.js
+const apiKey = "";
+=======
 const apiKey ;
+>>>>>>> 4788cc1336ac9cc9886777761c9f23940f76d7e9:weather.js
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
