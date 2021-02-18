@@ -1,0 +1,77 @@
+p {
+  align-self: center;
+}
+
+th{
+  padding: 10px;
+}
+
+img{
+  width: 40px;
+  height: auto;
+}
+
+.container{
+  margin: auto;
+  margin-top: 10%;
+  text-align: center;
+  overflow: none;
+}
+
+.btn {
+  height: 40px;
+}
+
+.input-group-append {
+  justify-content: center;
+}
+
+.date,
+.city-data {
+  text-decoration: none;
+}
+
+.change-temp:hover {
+  background-color:rgb(4, 158, 158);
+  color: white;
+}
+
+.table {
+  width: inherit;
+}
+
+.weather-table {
+  width: inherit;
+  height: auto;
+  border: 2px solid rgb(71, 76, 92);
+  margin-bottom: 30px;
+  background-color: rgb(71, 76, 92);
+  color: white;
+  opacity: 70%;
+  box-shadow: black 10px 10px 11px;
+}
+
+.outside-blocks {
+  background-color: rgb(62, 68, 90);
+}
+
+@media screen and (max-width: 500px) {
+.bg-dark,
+.jumbotron,
+.text-white {
+  position: relative;
+  margin-bottom: 30px;
+  height: 350px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.table {
+  width: 100%;
+}
+
+.weather-table {
+  width: inherit;
+}
+
+}
