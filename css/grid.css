@@ -10,23 +10,24 @@ html {
   }
   
   .container {
-    margin-top: 5%;
-    max-width: 900px;
+    margin-top: 4%;
+    max-width: 1000px;
+    max-height: 100vh;
     display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto;
+    grid-template-areas: "jumbotron info";
     grid-gap: 5%;
     justify-content: center;
   }
 
   .jumbotron {
     display: grid;
+    grid-area: "jumbotron";
     grid-template-columns: auto auto;
     grid-template-rows: auto auto auto;
     width: 500px;
     height: 500px;
     grid-gap: 10px;
-    padding: 40px;
+    padding: 10px;
     overflow-y: auto;
     border: 2px solid black;
     opacity: 70%;
@@ -34,7 +35,7 @@ html {
   }
 
   .info {
-      display: inline-grid;
+      grid-area: "info";
       width: 700px;
   }
 
@@ -50,20 +51,14 @@ html {
   }
 
   .container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
+    grid-template-areas: "jumbotron"
+                         "info";
   }
 
   .jumbotron {
-    display: flex;
-    flex-direction: column;
-    flex: 1 2 500px;
-    margin: auto;
     margin-bottom: 30px;
-    height: 50%;
-    line-height: 2em;
+    height: 100%;
+    line-height: 1em;
   }
 
   .jumbotron p {
@@ -71,8 +66,7 @@ html {
   }
 
   .info {
-    width: inherit;
-    flex: 2 1 560px;
+    display: none;
     margin: auto;
   }
     }
