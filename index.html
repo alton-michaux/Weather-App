@@ -17,13 +17,15 @@
       <div class="jumbotron bg-dark text-white">
         <h1 class="display-4">CityScape</h1>
         <div id="filler" class="filler"></div>
-        <p id="welcome-message" class="lead">Enter the name of a city to see current and 7-day forecast.</p>
+        <div class="filler forecast-div">
+          <p id="welcome-message" class="lead">Enter the name of a city to see current and 7-day forecast.</p>
+        </div>
         <div id="filler2" class="filler"></div>
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 filler">
           <input type="text" class="form-control" placeholder="City Name" name="city" id="city">
         </div>
-        <div class="input-group-append">
-          <button class="btn btn-outline-info" type="button" id="search">Search</button>
+        <div class="input-group-append filler">
+          <button class="btn btn-outline-info search-btn" type="button" id="search">Search</button>
       </div>
       </div>
       <div class="info" id="info"> </div>

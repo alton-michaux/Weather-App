@@ -7,6 +7,7 @@ html {
   *:before,
   *:after {
     margin: 0;
+    box-sizing: border-box;
   }
   
   .container {
@@ -34,6 +35,14 @@ html {
     box-shadow: black 10px 10px 11px;
   }
 
+  .filler {
+    margin: auto auto;
+  }
+
+  .forecast-btn {
+    display: none;
+  }
+  
   .info {
       grid-area: "info";
       width: 700px;
@@ -51,13 +60,15 @@ html {
   }
 
   .container {
-    grid-template-areas: "jumbotron"
-                         "info";
+    height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 
   .jumbotron {
-    margin-bottom: 30px;
-    height: 100%;
+    margin: auto auto;
+    height: 1fr;
+    width: 3fr;
     line-height: 1em;
   }
 
@@ -65,9 +76,21 @@ html {
     margin-bottom: 50px;
   }
 
+  .btn {
+    margin-bottom: 20px;
+  }
+
+  .forecast-btn {
+    display: block;
+    margin: auto auto;
+    margin-bottom: 20px;
+  }
+
   .info {
     display: none;
-    margin: auto;
+    width: 90vw;
+    margin: auto auto;
+    padding: 10px;
   }
     }
 
@@ -81,15 +104,16 @@ html {
     width: 100%;
   }
 
-  .input-group-append {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+  .lead {
+    margin: auto auto;
+  }
+
+  .input-group {
+    height: 100%;
+    width: 100%;
   }
 
   .info {
-    width: inherit;
-    flex: 2 1 560px;
-    margin: auto;
+    display: none;
   }
 }

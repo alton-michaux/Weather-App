@@ -29,6 +29,7 @@ const search = document
         .then(displayDataFarenheit)
         .then(tempChangeButton)
         .then(resetButton)
+        .then(forecastBtn)
         .catch(notFound);
       return newData;
     }
@@ -39,13 +40,50 @@ const resetButton = (data) => {
   const jumbo = document.querySelector(".jumbotron");
 
   reset.innerHTML = "RESET";
-  reset.classList.add("btn-outline-info", "btn");
+  reset.classList.add("btn-outline-info", "btn", "reset-btn");
 
   jumbo.appendChild(reset);
 
   reset.addEventListener("click", () => {
     location.reload();
   });
+
+  return data;
+};
+
+const forecastBtn = (data) => {
+  const forecast = document.createElement("button");
+  const forecastDiv = document.querySelector(".forecast-div");
+  const jumbo = document.querySelector(".jumbotron");
+
+  forecast.innerHTML = "7 Day Forecast";
+  forecast.classList.add("btn-outline-info", "btn", "forecast-btn");
+
+  forecastDiv.appendChild(forecast);
+
+  forecast.addEventListener("click", () => {
+    const info = document.querySelector(".info");
+    info.style.display = "block";
+    jumbo.style.display = "none";
+  });
+
+  const backBtn = () => {
+    const goBack = document.createElement("button");
+    const info = document.querySelector(".info");
+
+    goBack.innerHTML = "Current Forecast";
+    goBack.classList.add("btn-outline-info", "btn", "current-btn");
+
+    info.appendChild(goBack);
+
+    goBack.addEventListener("click", () => {
+      const jumbo = document.querySelector(".jumbotron");
+      jumbo.style.display = "block";
+      info.style.display = "none";
+    });
+  };
+
+  backBtn();
 
   return data;
 };
@@ -181,7 +219,7 @@ function tempChangeButton(data) {
   searchBox = document.getElementsByClassName("filler")[0];
   tempButton = document.createElement("button");
   tempButton.innerHTML = `Celsius`;
-  tempButton.classList.add("btn-outline-info", "btn");
+  tempButton.classList.add("btn-outline-info", "btn", "temp-change-btn");
   searchBox.appendChild(tempButton);
   tempButton.addEventListener("click", (e) => {
     if (e.target.innerHTML === `Celsius`) {
