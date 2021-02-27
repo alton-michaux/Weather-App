@@ -1,5 +1,5 @@
 //declare variable to store api key
-const apiKey = "";
+const apiKey = "a12fb02034883e480f0f41431feb3261";
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
