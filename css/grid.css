@@ -55,14 +55,12 @@
   }
 
   .input-group {
-    position: relative;
-    margin: auto auto;
+    display: block;
   }
 
   .form-control {
-    margin: auto auto;
-    height: 30px;
-    top: 10px;
+    position: relative;
+    bottom: 38px;
   }
   
   .info {
@@ -100,12 +98,14 @@
     padding: 0;
   }
 
-  .jumbotron {
-    margin: 5% auto;
+  .jumbotron,
+  .bg-dark {
+    margin: 1% auto;
     padding: 5;
-    height: 1fr;
+    height: 100vh;
     width: 95vw;
     line-height: 1em;
+    font-size: 80%;
   }
 
   .filler {
@@ -129,6 +129,10 @@
     display: block;
     margin: auto auto;
     margin-bottom: 20px;
+  }
+
+  .form-control {
+    bottom: 33px;
   }
 
   .info {
@@ -159,7 +163,7 @@
     margin: auto auto;
   }
 
-  /* .form-control {
-    align-self: center;
-  } */
+  .form-control {
+    bottom: 40px;
+  }
 }

@@ -30,10 +30,13 @@ const search = document
         .then(tempChangeButton)
         .then(resetButton)
         .then(forecastBtn)
+        .then(backBtn)
         .catch(notFound);
       return newData;
     }
   });
+
+//--------Buttons---------//
 
 const resetButton = (data) => {
   const reset = document.createElement("button");
@@ -67,27 +70,23 @@ const forecastBtn = (data) => {
     jumbo.style.display = "none";
   });
 
-  const backBtn = () => {
-    const goBack = document.createElement("button");
-    const info = document.querySelector(".info");
-
-    goBack.innerHTML = "Current Forecast";
-    goBack.classList.add("btn-outline-info", "btn", "current-btn");
-
-    info.appendChild(goBack);
-
-    goBack.addEventListener("click", () => {
-      const jumbo = document.querySelector(".jumbotron");
-      jumbo.style.display = "grid";
-      info.style.display = "none";
-    });
-
-    return goBack
-  };
-
-  backBtn();
-
   return data;
+};
+
+const backBtn = () => {
+  const goBack = document.createElement("button");
+  const info = document.querySelector(".info");
+
+  goBack.innerHTML = "Current Forecast";
+  goBack.classList.add("btn-outline-info", "btn", "current-btn");
+
+  info.appendChild(goBack);
+
+  goBack.addEventListener("click", () => {
+    const jumbo = document.querySelector(".jumbotron");
+    jumbo.style.display = "grid";
+    info.style.display = "none";
+  });
 };
 
 //function that runs previously generated url through the getJSON function for retrieval and parsing as well as generating a second api call for future weather forecasts
