@@ -1,5 +1,5 @@
 //declare variable to store api key
-const apiKey = "a12fb02034883e480f0f41431feb3261";
+const apiKey = "";
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -29,17 +29,21 @@ const search = document
         .then(displayDataFarenheit)
         .then(tempChangeButton)
         .then(resetButton)
+        .then(forecastBtn)
+        .then(backBtn)
         .catch(notFound);
       return newData;
     }
   });
+
+//--------Buttons---------//
 
 const resetButton = (data) => {
   const reset = document.createElement("button");
   const jumbo = document.querySelector(".jumbotron");
 
   reset.innerHTML = "RESET";
-  reset.classList.add("btn-outline-info", "btn");
+  reset.classList.add("btn-outline-info", "btn", "reset-btn", "filler");
 
   jumbo.appendChild(reset);
 
@@ -48,6 +52,41 @@ const resetButton = (data) => {
   });
 
   return data;
+};
+
+const forecastBtn = (data) => {
+  const forecast = document.createElement("button");
+  const forecastDiv = document.querySelector(".forecast-div");
+  const jumbo = document.querySelector(".jumbotron");
+
+  forecast.innerHTML = "7 Day Forecast";
+  forecast.classList.add("btn-outline-info", "btn", "forecast-btn");
+
+  forecastDiv.appendChild(forecast);
+
+  forecast.addEventListener("click", () => {
+    const info = document.querySelector(".info");
+    info.style.display = "grid";
+    jumbo.style.display = "none";
+  });
+
+  return data;
+};
+
+const backBtn = () => {
+  const goBack = document.createElement("button");
+  const info = document.querySelector(".info");
+
+  goBack.innerHTML = "Current Forecast";
+  goBack.classList.add("btn-outline-info", "btn", "current-btn");
+
+  info.appendChild(goBack);
+
+  goBack.addEventListener("click", () => {
+    const jumbo = document.querySelector(".jumbotron");
+    jumbo.style.display = "grid";
+    info.style.display = "none";
+  });
 };
 
 //function that runs previously generated url through the getJSON function for retrieval and parsing as well as generating a second api call for future weather forecasts
@@ -178,10 +217,10 @@ function tableMaker(data) {
 
 //button that allows the user to switch between farenheit and celsius temperatures
 function tempChangeButton(data) {
-  searchBox = document.getElementsByClassName("filler")[0];
+  searchBox = document.getElementsByClassName("filler")[1];
   tempButton = document.createElement("button");
   tempButton.innerHTML = `Celsius`;
-  tempButton.classList.add("btn-outline-info", "btn");
+  tempButton.classList.add("btn-outline-info", "btn", "temp-change-btn");
   searchBox.appendChild(tempButton);
   tempButton.addEventListener("click", (e) => {
     if (e.target.innerHTML === `Celsius`) {
