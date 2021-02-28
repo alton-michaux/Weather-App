@@ -7,7 +7,7 @@ async function getJSON(url) {
     let data = await fetch(url);
     return await data.json();
   } catch (err) {
-    throw err;
+    throw notFound(err)
   }
 }
 
@@ -233,7 +233,6 @@ function displayDataCelsius(data) {
 
 //error handler
 function notFound(err) {
-  let newHTML = `<p>City not found. Please try again<p>`;
-  document.getElementById("info").innerHTML = newHTML;
+  let errAlert =  alert(`Error: City data not found.`)
   console.log(err);
 }
