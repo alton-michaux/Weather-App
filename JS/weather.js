@@ -5,6 +5,7 @@ const apiKey = "";
 async function getJSON(url) {
   try {
     let data = await fetch(url);
+    console.log(data)
     return await data.json();
   } catch (err) {
     throw notFound(err)
@@ -272,6 +273,9 @@ function displayDataCelsius(data) {
 
 //error handler
 function notFound(err) {
-  let errAlert =  alert(`Error: City data not found.`)
-  console.log(err);
+  let errAlert =  alert(`${err}: City data not found.`)
+  let html = `<p>City data not found.</p>`
+  const infoDiv = document.querySelector(".info");
+  infoDiv.innerHTML = html;
+  console.warn(err);
 }
