@@ -1,5 +1,5 @@
 //declare variable to store api key
-const apiKey = "a12fb02034883e480f0f41431feb3261";
+const apiKey = "";
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -40,7 +40,7 @@ const resetButton = (data) => {
   const jumbo = document.querySelector(".jumbotron");
 
   reset.innerHTML = "RESET";
-  reset.classList.add("btn-outline-info", "btn", "reset-btn");
+  reset.classList.add("btn-outline-info", "btn", "reset-btn", "filler");
 
   jumbo.appendChild(reset);
 
@@ -63,7 +63,7 @@ const forecastBtn = (data) => {
 
   forecast.addEventListener("click", () => {
     const info = document.querySelector(".info");
-    info.style.display = "block";
+    info.style.display = "grid";
     jumbo.style.display = "none";
   });
 
@@ -78,9 +78,11 @@ const forecastBtn = (data) => {
 
     goBack.addEventListener("click", () => {
       const jumbo = document.querySelector(".jumbotron");
-      jumbo.style.display = "block";
+      jumbo.style.display = "grid";
       info.style.display = "none";
     });
+
+    return goBack
   };
 
   backBtn();
@@ -216,7 +218,7 @@ function tableMaker(data) {
 
 //button that allows the user to switch between farenheit and celsius temperatures
 function tempChangeButton(data) {
-  searchBox = document.getElementsByClassName("filler")[0];
+  searchBox = document.getElementsByClassName("filler")[1];
   tempButton = document.createElement("button");
   tempButton.innerHTML = `Celsius`;
   tempButton.classList.add("btn-outline-info", "btn", "temp-change-btn");
