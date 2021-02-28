@@ -81,8 +81,6 @@
   .weather-table {
     margin: auto auto;
     height: inherit;
-    background-color: grey;
-    opacity: .7;
   }
 
   .current-btn {
@@ -103,7 +101,7 @@
 
   .container {
     display: block;
-    overflow-y: auto;
+    overflow-y: none;
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -149,10 +147,12 @@
 
   .info {
     display: none;
+    height: 100%;
   }
 
   .table {
-    height: 1fr;
+    height: 100%;
+    color: white;
   }
 
   .current-btn {

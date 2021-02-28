@@ -17,6 +17,8 @@ const search = document
   .getElementById("search")
   //makes search button functional with 'click'
   .addEventListener("click", () => {
+    // const infoDiv = document.getElementById("info");
+    // infoDiv.style.display = "grid";
     //grab user input from 'cityField'
     const cityField = document.getElementById("city").value.toLowerCase();
     console.log("check for user input");
@@ -31,64 +33,12 @@ const search = document
         .then(tempChangeButton)
         .then(resetButton)
         .then(forecastBtn)
-        .then(backBtn)
+        .then(currentBtn)
         .catch(notFound);
       return newData;
     }
   });
 
-//--------Buttons---------//
-
-const resetButton = (data) => {
-  const reset = document.createElement("button");
-  const jumbo = document.querySelector(".jumbotron");
-
-  reset.innerHTML = "RESET";
-  reset.classList.add("btn-outline-info", "btn", "reset-btn", "filler");
-
-  jumbo.appendChild(reset);
-
-  reset.addEventListener("click", () => {
-    location.reload();
-  });
-
-  return data;
-};
-
-const forecastBtn = (data) => {
-  const forecast = document.createElement("button");
-  const forecastDiv = document.querySelector(".forecast-div");
-  const jumbo = document.querySelector(".jumbotron");
-
-  forecast.innerHTML = "7 Day Forecast";
-  forecast.classList.add("btn-outline-info", "btn", "forecast-btn");
-
-  forecastDiv.appendChild(forecast);
-
-  forecast.addEventListener("click", () => {
-    const info = document.querySelector(".info");
-    info.style.display = "grid";
-    jumbo.style.display = "none";
-  });
-
-  return data;
-};
-
-const backBtn = () => {
-  const goBack = document.createElement("button");
-  const info = document.querySelector(".info");
-
-  goBack.innerHTML = "Current Forecast";
-  goBack.classList.add("btn-outline-info", "btn", "current-btn");
-
-  info.appendChild(goBack);
-
-  goBack.addEventListener("click", () => {
-    const jumbo = document.querySelector(".jumbotron");
-    jumbo.style.display = "grid";
-    info.style.display = "none";
-  });
-};
 
 //function that runs previously generated url through the getJSON function for retrieval and parsing as well as generating a second api call for future weather forecasts
 async function getCity(url) {
@@ -216,6 +166,8 @@ function tableMaker(data) {
   return newHTMLData;
 }
 
+//--------Buttons---------//
+
 //button that allows the user to switch between farenheit and celsius temperatures
 function tempChangeButton(data) {
   searchBox = document.getElementsByClassName("filler")[1];
@@ -270,6 +222,58 @@ function displayDataCelsius(data) {
     }
   }
 }
+
+const resetButton = (data) => {
+  const reset = document.createElement("button");
+  const jumbo = document.querySelector(".jumbotron");
+
+  reset.innerHTML = "RESET";
+  reset.classList.add("btn-outline-info", "btn", "reset-btn", "filler");
+
+  jumbo.appendChild(reset);
+
+  reset.addEventListener("click", () => {
+    location.reload();
+  });
+
+  return data;
+};
+
+const forecastBtn = (data) => {
+  const forecast = document.createElement("button");
+  const forecastDiv = document.querySelector(".forecast-div");
+  const jumbo = document.querySelector(".jumbotron");
+
+  forecast.innerHTML = "7 Day Forecast";
+  forecast.classList.add("btn-outline-info", "btn", "forecast-btn");
+
+  forecastDiv.appendChild(forecast);
+
+  forecast.addEventListener("click", () => {
+    const info = document.querySelector(".info");
+    info.style.display = "grid";
+    jumbo.style.display = "none";
+  });
+
+  return data;
+};
+
+const currentBtn = (data) => {
+  const goBack = document.createElement("button");
+  const info = document.querySelector(".info");
+
+  goBack.innerHTML = "Current Forecast";
+  goBack.classList.add("btn-outline-info", "btn", "current-btn");
+
+  info.appendChild(goBack);
+
+  goBack.addEventListener("click", () => {
+    const jumbo = document.querySelector(".jumbotron");
+    jumbo.style.display = "grid";
+    info.style.display = "none";
+  });
+  return data
+};
 
 //error handler
 function notFound(err) {
