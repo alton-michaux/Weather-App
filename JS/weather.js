@@ -181,6 +181,7 @@ function tempChangeButton(data) {
     } else {
       displayDataFarenheit(data);
       e.target.innerHTML = `Celsius`;
+      currentBtn(data);
     }
   });
 }
