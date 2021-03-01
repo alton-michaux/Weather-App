@@ -1,101 +1,106 @@
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+body {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  /* overflow-x: hidden; */
+  margin: auto auto;
+  max-width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-areas: "jumbotron info";
+  grid-template-columns: repeat(2, minmax(350px, 1fr));
+  grid-gap: 2.5%;
+  justify-content: center;
+}
+
+.jumbotron,
+.info {
+  width: 100%;
+  height: inherit;
+}
+
+.jumbotron {
+  display: grid;
+  grid-area: "jumbotron";
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto;
+  grid-gap: 10px;
+  padding: 5%;
+  overflow-y: auto;
+  border: 2px solid black;
+  opacity: 70%;
+  box-shadow: black 10px 10px 11px;
+}
+
+.filler {
+  margin: auto auto;
+}
+
+.display-4 {
+  margin: auto auto;
+}
+
+.lead {
+  text-align: center;
+}
+
+.forecast-btn {
+  display: none;
+}
+
+.cityInfo {
+  text-align: center;
+}
+
+.input-group {
+  display: block;
+}
+
+.form-control {
+  position: relative;
+  bottom: 38px;
+}
+
+.info {
+  grid-area: "info";
+  display: none;
+}
+
+.table {
+  margin: auto auto;
+  max-height: inherit;
+  color: white;
+}
+
+.weather-table {
+  margin: auto auto;
+  height: inherit;
+}
+
+.current-btn {
+  display: none;
+}
+
+.date {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+@media screen and (max-width: 1100px) {
+  body {
     margin: 0;
-    padding: 0;
-    font-size: 100%;
-  }
-
-  body {
-    overflow: hidden;
-    width: 100vw;
-    height: 100vh;
-  }
-  
-  .container {
-    /* overflow-x: hidden; */
-    margin: auto auto;
-    max-width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-areas: "jumbotron info";
-    grid-template-columns: repeat(2, minmax(350px, 1fr));
-    grid-gap: 2.5%;
-    justify-content: center;
-  }
-
-  .jumbotron,
-  .info {
-    width: 100%;
-    height: inherit;
-  }
-
-  .jumbotron {
-    display: grid;
-    grid-area: "jumbotron";
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto auto;
-    grid-gap: 10px;
-    padding: 5%;
-    overflow-y: auto;
-    border: 2px solid black;
-    opacity: 70%;
-    box-shadow: black 10px 10px 11px;
-  }
-
-  .filler {
-    margin: auto auto;
-  }
-
-  .display-4 {
-    margin: auto auto;
-  }
-
-  .lead {
-    text-align: center;
-  }
-
-  .forecast-btn {
-    display: none;
-  }
-
-  .input-group {
-    display: block;
-  }
-
-  .form-control {
-    position: relative;
-    bottom: 38px;
-  }
-  
-  .info {
-      grid-area: "info";
-  }
-
-  .table {
-    margin: auto auto;
-    max-height: inherit;
-  }
-
-  .weather-table {
-    margin: auto auto;
-    height: inherit;
-  }
-
-  .current-btn {
-    display: none;
-  }
-
-  .date {
-      grid-row-start: 1;
-      grid-row-end: 2;
-  }
-  
-  @media screen and (max-width: 1100px) {
-
-  body {
-    margin:0;
     overflow-x: hidden;
   }
 
@@ -124,7 +129,7 @@
   }
 
   .cityInfo {
-    line-height: .1em;
+    line-height: 0.1em;
   }
 
   .jumbotron p {
@@ -142,11 +147,10 @@
   }
 
   .form-control {
-    bottom: 33px;
+  bottom: auto;
   }
 
   .info {
-    display: none;
     height: 100%;
   }
 
@@ -159,12 +163,23 @@
     margin: auto auto;
     display: block;
   }
-    }
+}
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
   .jumbotron {
+    grid-template-columns: auto;
+    grid-template-areas: "filler"
+                         "filler"
+                         "filler"
+                         "filler"
+                         "filler"
+                         "filler";
     width: 100%;
     height: 95%;
+  }
+
+  .filler {
+    grid-area: "filler";
   }
 
   .lead {
@@ -176,7 +191,6 @@
   .cityInfo {
     line-height: 1.2em;
     font-size: 1.2em;
-    text-align: center;
   }
 
   .temp img {

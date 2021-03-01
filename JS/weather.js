@@ -5,10 +5,10 @@ const apiKey = "";
 async function getJSON(url) {
   try {
     let data = await fetch(url);
-    console.log(data)
+    console.log(data);
     return await data.json();
   } catch (err) {
-    throw notFound(err)
+    throw notFound(err);
   }
 }
 
@@ -17,8 +17,8 @@ const search = document
   .getElementById("search")
   //makes search button functional with 'click'
   .addEventListener("click", () => {
-    // const infoDiv = document.getElementById("info");
-    // infoDiv.style.display = "grid";
+    const infoDiv = document.getElementById("info");
+    infoDiv.style.display = "grid";
     //grab user input from 'cityField'
     const cityField = document.getElementById("city").value.toLowerCase();
     console.log("check for user input");
@@ -38,7 +38,6 @@ const search = document
       return newData;
     }
   });
-
 
 //function that runs previously generated url through the getJSON function for retrieval and parsing as well as generating a second api call for future weather forecasts
 async function getCity(url) {
@@ -272,13 +271,13 @@ const currentBtn = (data) => {
     jumbo.style.display = "grid";
     info.style.display = "none";
   });
-  return data
+  return data;
 };
 
 //error handler
 function notFound(err) {
-  let errAlert =  alert(`${err}: City data not found.`)
-  let html = `<p>City data not found.</p>`
+  let errAlert = alert(`${err}: City data not found.`);
+  let html = `<p>City data not found.</p>`;
   const infoDiv = document.querySelector(".info");
   infoDiv.innerHTML = html;
   console.warn(err);
