@@ -65,12 +65,15 @@ body {
 }
 
 .input-group {
-  display: block;
+  position: relative;
 }
 
 .form-control {
-  position: relative;
-  bottom: 38px;
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  padding: 0;
+  text-align: center;
 }
 
 .info {
@@ -116,7 +119,7 @@ body {
   .bg-dark {
     margin: 1% auto;
     padding: 5;
-    height: 100vh;
+    height: 95vh;
     width: 95vw;
     line-height: 1em;
     font-size: 80%;
@@ -147,7 +150,7 @@ body {
   }
 
   .form-control {
-  bottom: auto;
+    margin: 5% auto;
   }
 
   .info {
@@ -159,6 +162,10 @@ body {
     color: white;
   }
 
+  .weather-table {
+    width: 90%;
+  }
+
   .current-btn {
     margin: auto auto;
     display: block;
@@ -168,12 +175,14 @@ body {
 @media screen and (max-width: 800px) {
   .jumbotron {
     grid-template-columns: auto;
-    grid-template-areas: "filler"
-                         "filler"
-                         "filler"
-                         "filler"
-                         "filler"
-                         "filler";
+    grid-template-areas:
+      "filler"
+      "filler"
+      "filler"
+      "filler"
+      "filler"
+      "filler";
+    grid-gap: 2%;
     width: 100%;
     height: 95%;
   }
