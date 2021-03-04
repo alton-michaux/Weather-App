@@ -48,8 +48,12 @@ thead {
 .jumbotron {
   display: grid;
   grid-area: "jumbotron";
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto auto;
+  grid-template-areas: "filler" "filler"
+                       "filler" "filler"
+                       "input"
+                       "filler";
+  grid-auto-columns: auto;
+  grid-auto-rows: auto;
   grid-gap: 10px;
   padding: 5%;
   overflow-y: auto;
@@ -60,6 +64,7 @@ thead {
 
 .filler {
   margin: auto auto;
+  grid-area: "filler";
 }
 
 .display-4 {
@@ -79,7 +84,8 @@ thead {
 }
 
 .input-group {
-  position: relative;
+  display: block;
+  grid-area: "input";
 }
 
 .form-control {
@@ -184,6 +190,16 @@ thead {
 }
 
 @media screen and (max-width: 800px) {
+  body {
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  body ::-webkit-scrollbar {
+    display: none;
+  }
+
   .jumbotron {
     grid-template-columns: auto;
     grid-template-areas:
@@ -195,7 +211,7 @@ thead {
       "filler";
     grid-gap: 2%;
     width: 100%;
-    height: 95%;
+    height: 98%;
   }
 
   .filler {
@@ -231,12 +247,32 @@ thead {
   }
   
   .info {
-    height: 95vh;
-    width: 100vw;
+    height: 98%;
+    width: 100%;
+    position: relative;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
   
-  .table,
+  .table {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
   .weather-table {
-    height: 75vh;
+    top: 0;
+    width: 100vw;
+  }
+
+  .info ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .current-btn {
+    z-index: 1000;
+    margin-bottom: 0;
   }
 }
