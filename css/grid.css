@@ -14,7 +14,6 @@ body {
 }
 
 .container {
-  /* overflow-x: hidden; */
   margin: auto auto;
   max-width: 100vw;
   height: 100vh;
@@ -71,7 +70,7 @@ body {
 .form-control {
   position: absolute;
   margin: 0;
-  bottom: 0;
+  bottom: 40px;
   padding: 0;
   text-align: center;
 }
