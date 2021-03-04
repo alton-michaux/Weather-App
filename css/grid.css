@@ -25,7 +25,9 @@ body {
 }
 
 .jumbotron,
-.info {
+.info,
+.table,
+.weather-table {
   width: 100%;
   height: inherit;
 }
@@ -77,18 +79,17 @@ body {
 
 .info {
   grid-area: "info";
+  opacity: 70%;
   display: none;
 }
 
 .table {
   margin: auto auto;
-  max-height: inherit;
   color: white;
 }
 
 .weather-table {
   margin: auto auto;
-  height: inherit;
 }
 
 .current-btn {
@@ -115,7 +116,10 @@ body {
   }
 
   .jumbotron,
-  .bg-dark {
+  .bg-dark,
+  .info,
+  .table,
+  .weather-table {
     margin: 1% auto;
     padding: 5;
     height: 95vh;
@@ -152,17 +156,8 @@ body {
     margin: 5% auto;
   }
 
-  .info {
-    height: 100%;
-  }
-
   .table {
-    height: 100%;
     color: white;
-  }
-
-  .weather-table {
-    width: 90%;
   }
 
   .current-btn {
@@ -212,5 +207,15 @@ body {
   .form-control {
     position: absolute;
     top: 3px;
+  }
+  
+  .info {
+    height: 95vh;
+    width: 100vw;
+  }
+  
+  .table,
+  .weather-table {
+    height: 75vh;
   }
 }
