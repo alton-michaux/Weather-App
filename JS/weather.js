@@ -18,7 +18,12 @@ const search = document
   //makes search button functional with 'click'
   .addEventListener("click", () => {
     const infoDiv = document.getElementById("info");
-    infoDiv.style.display = "grid";
+    console.log(window.innerWidth)
+    if (window.innerWidth >= 500) {
+      infoDiv.style.display = "grid";
+    } else {
+      infoDiv.style.display = "none";
+    }
     //grab user input from 'cityField'
     const cityField = document.getElementById("city").value.toLowerCase();
     console.log("check for user input");

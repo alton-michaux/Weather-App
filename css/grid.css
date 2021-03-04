@@ -8,9 +8,13 @@
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   width: 100vw;
   height: 100vh;
+}
+
+thead {
+  display: contents;
 }
 
 .container {
@@ -25,11 +29,20 @@ body {
 }
 
 .jumbotron,
-.info,
+.info {
+  position: relative;
+  width: 100%;
+  height: 95vh;
+  margin: 10px auto;
+}
+
 .table,
 .weather-table {
-  width: 100%;
+  position: absolute;
+  top: 15vh;
+  bottom: 15vh;
   height: inherit;
+  width: 100%;
 }
 
 .jumbotron {
@@ -81,6 +94,9 @@ body {
   grid-area: "info";
   opacity: 70%;
   display: none;
+  padding: 5%;
+  border: 2px solid black;
+  box-shadow: black 10px 10px 11px;
 }
 
 .table {
@@ -158,6 +174,7 @@ body {
 
   .table {
     color: white;
+    font-size: 2em;
   }
 
   .current-btn {
@@ -173,7 +190,7 @@ body {
       "filler"
       "filler"
       "filler"
-      "filler"
+      "temp"
       "filler"
       "filler";
     grid-gap: 2%;
@@ -183,6 +200,10 @@ body {
 
   .filler {
     grid-area: "filler";
+  }
+
+  .temp {
+    grid-area: "temp";
   }
 
   .lead {
