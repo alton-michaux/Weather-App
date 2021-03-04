@@ -19,7 +19,7 @@ const search = document
   .addEventListener("click", () => {
     const infoDiv = document.getElementById("info");
     console.log(window.innerWidth)
-    if (window.innerWidth >= 500) {
+    if (window.innerWidth >= 1100) {
       infoDiv.style.display = "grid";
     } else {
       infoDiv.style.display = "none";
