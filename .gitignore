@@ -1,1 +1,9 @@
 .env
+
+.replit
+
+node_modules
+
+config.yml
+
+package.json
