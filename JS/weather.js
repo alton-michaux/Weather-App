@@ -1,5 +1,18 @@
-//declare variable to store api key
-const apiKey = "";
+//-----------------------------------//
+//----Global Functions/Variables-----//
+//-----------------------------------//
+
+//node parser function
+const modConfig = (mod, returnValue) => {
+  const result = require(mod).config();
+  if (result.error) {
+    console.log(result.error);
+    throw result.error;
+  } else {
+    console.log(result.parsed);
+    return returnValue;
+  }
+};
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
@@ -12,13 +25,23 @@ async function getJSON(url) {
   }
 }
 
+//declare environment variable
+const env = modConfig("dotenv", process.env);
+
+//declare variable to store api key
+const apiKey = env.API_KEY;
+
+//-----------------------------------//
+//-------Main Event Listener---------//
+//-----------------------------------//
+
 //select the search button.
 const search = document
   .getElementById("search")
   //makes search button functional with 'click'
   .addEventListener("click", () => {
     const infoDiv = document.getElementById("info");
-    console.log(window.innerWidth)
+    console.log(window.innerWidth);
     if (window.innerWidth >= 1100) {
       infoDiv.style.display = "grid";
     } else {
@@ -44,6 +67,10 @@ const search = document
     }
   });
 
+//-----------------------------------//
+//------------API Calls--------------//
+//-----------------------------------//
+
 //function that runs previously generated url through the getJSON function for retrieval and parsing as well as generating a second api call for future weather forecasts
 async function getCity(url) {
   const currentCity = await getJSON(url);
@@ -52,6 +79,10 @@ async function getCity(url) {
 
   return Promise.all([currentCity, cityInfo]);
 }
+
+//-----------------------------------//
+//------UI Population FUnctions------//
+//-----------------------------------//
 
 //generate current date
 function getDate(data) {
@@ -170,7 +201,9 @@ function tableMaker(data) {
   return newHTMLData;
 }
 
+//------------------------//
 //--------Buttons---------//
+//------------------------//
 
 //button that allows the user to switch between farenheit and celsius temperatures
 function tempChangeButton(data) {
@@ -189,43 +222,6 @@ function tempChangeButton(data) {
       currentBtn(data);
     }
   });
-}
-
-//function that converts temperatures to celsius
-function displayDataCelsius(data) {
-  const temp = document.querySelectorAll(
-    ".temp, .temp-min, .temp-max, .temp-feels-like"
-  );
-  for (i = 0; i < temp.length; i++) {
-    if (temp[i].className === "temp") {
-      temp[i].innerHTML = `<p>Temp: ${Math.round(
-        data[0].main.temp - 273.15
-      )}&deg <br> <img src='http://openweathermap.org/img/wn/${
-        data[0].weather[0].icon
-      }@4x.png'></p>`;
-    }
-    if (temp[i].className === "temp-min") {
-      for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${Math.round(
-          data[1].daily[j].temp.min - 273.15
-        )}&deg</th>`;
-      }
-    }
-    if (temp[i].className === "temp-max") {
-      for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${Math.round(
-          data[1].daily[j].temp.max - 273.15
-        )}&deg</th>`;
-      }
-    }
-    if (temp[i].className === "temp-feels-like") {
-      for (j = 0; j < data[1].daily.length; j++) {
-        temp[i].innerHTML = `<th>${Math.round(
-          data[1].daily[j].feels_like.day - 273.15
-        )}&deg</th>`;
-      }
-    }
-  }
 }
 
 const resetButton = (data) => {
@@ -279,6 +275,51 @@ const currentBtn = (data) => {
   });
   return data;
 };
+
+//-----------------------------------//
+//------Converter Functions----------//
+//-----------------------------------//
+
+//function that converts temperatures to celsius
+function displayDataCelsius(data) {
+  const temp = document.querySelectorAll(
+    ".temp, .temp-min, .temp-max, .temp-feels-like"
+  );
+  for (i = 0; i < temp.length; i++) {
+    if (temp[i].className === "temp") {
+      temp[i].innerHTML = `<p>Temp: ${Math.round(
+        data[0].main.temp - 273.15
+      )}&deg <br> <img src='http://openweathermap.org/img/wn/${
+        data[0].weather[0].icon
+      }@4x.png'></p>`;
+    }
+    if (temp[i].className === "temp-min") {
+      for (j = 0; j < data[1].daily.length; j++) {
+        temp[i].innerHTML = `<th>${Math.round(
+          data[1].daily[j].temp.min - 273.15
+        )}&deg</th>`;
+      }
+    }
+    if (temp[i].className === "temp-max") {
+      for (j = 0; j < data[1].daily.length; j++) {
+        temp[i].innerHTML = `<th>${Math.round(
+          data[1].daily[j].temp.max - 273.15
+        )}&deg</th>`;
+      }
+    }
+    if (temp[i].className === "temp-feels-like") {
+      for (j = 0; j < data[1].daily.length; j++) {
+        temp[i].innerHTML = `<th>${Math.round(
+          data[1].daily[j].feels_like.day - 273.15
+        )}&deg</th>`;
+      }
+    }
+  }
+}
+
+//-----------------------------------//
+//----------Error Handler------------//
+//-----------------------------------//
 
 //error handler
 function notFound(err) {
