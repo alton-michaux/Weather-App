@@ -3,14 +3,14 @@
 //-----------------------------------//
 
 //node parser function
-const modConfig = (mod, returnValue) => {
+const modConfig = (mod) => {
   const result = require(mod).config();
   if (result.error) {
     console.log(result.error);
     throw result.error;
   } else {
-    console.log(result.parsed);
-    return returnValue;
+    // console.log(result.parsed);
+    return result.parsed;
   }
 };
 
@@ -26,10 +26,17 @@ async function getJSON(url) {
 }
 
 //declare environment variable
-const env = modConfig("dotenv", process.env);
+const env = modConfig("dotenv");
+      env.exports ={
+        API : env.API_KEY,
+      };
+
+console.log(
+      env.exports
+);
 
 //declare variable to store api key
-const apiKey = env.API_KEY;
+const apiKey = env.exports.API;
 
 //-----------------------------------//
 //-------Main Event Listener---------//

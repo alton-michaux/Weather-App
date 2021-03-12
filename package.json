@@ -4,7 +4,8 @@
   "description": "Simple weather app using openweather api",
   "main": "js/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build": "browserify JS/weather.js -o JS/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
+    "browserify": "^17.0.0",
     "chai": "^4.3.3",
     "mocha": "^8.3.1"
   }
