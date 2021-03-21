@@ -4,7 +4,7 @@
   "description": "Simple weather app using openweather api",
   "main": "js/index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha JS/bundle.js",
     "build": "browserify JS/weather.js -o JS/bundle.js"
   },
   "repository": {
