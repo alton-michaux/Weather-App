@@ -31,13 +31,8 @@ const env = modConfig("dotenv");
         API : env.API_KEY,
       };
 
-console.log(
-      env.exports
-);
-
 //declare variable to store api key
 const apiKey = env.exports.API;
-
 //-----------------------------------//
 //-------Main Event Listener---------//
 //-----------------------------------//
