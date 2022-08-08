@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <title>weather</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Megrim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link href= "css/index.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="grid.css"></link>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="jumbotron bg-dark text-white">
+        <h1 class="display-4 filler">CityScape</h1>
+        <div id="filler" class="filler temp"></div>
+        <div class="filler forecast-div">
+          <p id="welcome-message" class="lead">Enter the name of a city to see current and 7-day forecast.</p>
+        </div>
+        <div id="filler2" class="filler"></div>
+        <div class="input-group mb-3 filler">
+          <input type="text" class="form-control" placeholder="City Name" name="city" id="city">
+        </div>
+        <div class="input-group-append filler">
+          <button class="btn btn-outline-info search-btn" type="button" id="search">Search</button>
+      </div>
+      </div>
+      <div class="info bg-dark" id="info"> </div>
+    </div>
+    <script type="text/javascript" src="weather.js"></script>
+  <script defer src="bundle.js"></script></body>
+</html>
