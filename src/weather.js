@@ -2,41 +2,20 @@
 //----Global Functions/Variables-----//
 //-----------------------------------//
 
-//node parser function
-const modConfig = (mod) => {
-  const result = require(mod).config();
-  if (result.error) {
-    console.log(result.error);
-    throw result.error;
-  } else {
-    // console.log(result.parsed);
-    return result.parsed;
-  }
-};
+import (__dirname + '/grid.css');
+
+//declare variable to store api key
+const apiKey = process.env.API_KEY;
 
 //function that fetches and parses data from urls
 async function getJSON(url) {
   try {
     let data = await fetch(url);
-    console.log(data);
     return await data.json();
   } catch (err) {
     throw notFound(err);
   }
 }
-
-//declare environment variable
-const env = modConfig("dotenv");
-      env.exports ={
-        API : env.API_KEY,
-      };
-
-console.log(
-      env.exports
-);
-
-//declare variable to store api key
-const apiKey = env.exports.API;
 
 //-----------------------------------//
 //-------Main Event Listener---------//
